@@ -1,0 +1,36 @@
+{
+  "name": "vue",
+  "description": "Vue test app",
+  "version": "1.0.0",
+  "author": "William Walker <william@williamwalker.me> (http://williamwalker.me/)",
+  "homepage": "https://github.com/williamium/playground-vue",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/williamium/playground-vue.git"
+  },
+  "scripts": {
+    "serve": "json-server --watch db.json",
+    "dev": "webpack-dev-server --open --inline --hot",
+    "build": "webpack -p --progress --hide-modules"
+  },
+  "dependencies": {
+    "axios": "^0.16.2",
+    "vue": "^2.4.2",
+    "vue-axios": "^2.0.2",
+    "vue-router": "^2.7.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.0",
+    "css-loader": "^0.28.7",
+    "extract-text-webpack-plugin": "^3.0.0",
+    "node-sass": "^4.5.3",
+    "sass-loader": "^6.0.6",
+    "susy": "^2.2.12",
+    "vue-loader": "^13.0.4",
+    "vue-template-compiler": "^2.4.2",
+    "webpack": "^3.5.5",
+    "webpack-dev-server": "^2.7.1"
+  }
+}

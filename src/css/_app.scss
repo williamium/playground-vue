@@ -1,0 +1,111 @@
+/* ==========================================================================
+   Main app styles
+   ========================================================================== */
+body {
+    font-family: sans-serif;
+    font-size: 16px;
+    color: $primaryTextColour;
+    margin: 0;
+    padding: 0;
+    background: $secondaryBgColour;
+}
+
+.container {
+	@include container();
+	padding: 0 40px;
+}
+
+#app {
+    background: linear-gradient(to bottom, #D8D8D8 0, #FFF 80%);
+    min-height: 100vh;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.1s;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+
+a {
+    text-decoration: none;
+
+    &.button {
+        display: block;
+        width: 135px;
+        background: $secondaryBgColour;
+        font-size: convert(13);
+        color: $primaryTextColour;
+        text-transform: uppercase;
+        text-decoration: none;
+        text-align: center;
+    }
+}
+
+button {
+    outline: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    color: $primaryTextColour;
+    background: $secondaryBgColour;
+    padding: 12px 10px;
+    border: none;
+}
+
+input, select {
+    font-size: convert(16);
+    padding: 3px 5px;
+}
+
+.pod-container {
+    overflow: hidden;
+
+    .pod {
+        @include span(4);
+        background: $tertiaryBgColour;
+
+        &:last-child {
+            margin-right: 0;
+        }
+
+        h3 {
+            background: $primaryBgColour;
+            font-weight: normal;
+            color: $secondaryTextColour;
+            padding: 12px 20px;
+            margin: 0;
+        }
+
+        time {
+            display: block;
+            color: $primaryTextColour;
+            font-size: convert(13);
+            line-height: 45px;
+            font-weight: bold;
+            padding: 0 20px;
+        }
+
+        .pod-content {
+            padding: 12px 20px;
+        }
+
+        .pod-footer {
+            overflow: hidden;
+            padding: 10px;
+            line-height: 40px;
+            background: $primaryTextColour;
+
+            a {
+                float: right;
+            }
+
+            button {
+                float: right;
+                padding: 0;
+                height: 40px;
+                width: 135px;
+            }
+        }
+    }
+}
