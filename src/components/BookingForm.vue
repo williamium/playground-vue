@@ -79,14 +79,14 @@ export default {
             store.getBookings();
 
             // Update the current tour
-            this.booking.tour = this.$route.query.tour;
+            this.booking.tour = parseInt(this.$route.query.tour);
         }
     },
     data() {
         return {
             store: store.state,
             booking: {
-                tour: this.$route.query.tour,
+                tour: parseInt(this.$route.query.tour),
                 firstname: '',
                 surname: '',
                 qty: 0
