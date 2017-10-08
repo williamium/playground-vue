@@ -32,12 +32,13 @@ export default {
         const originalStatus = booking.status;
 
         // Toggle the status on or off
-        booking.status = (booking.status === newStatus) ? 1 : newStatus;
+        this.state.bookings.find(storeBooking => storeBooking.id === booking.id).status = (booking.status === newStatus) ? 1 : newStatus;
 
         axios.patch('http://localhost:3000/bookings/'+booking.id, {
             status: booking.status
         }).catch((error) => {
-            booking.status = originalStatus;
+            // There was an error so revert the status
+            this.state.bookings.find(storeBooking => storeBooking.id === booking.id).status = originalStatus;
 
             this.handleError(error, 'There was a problem changing the booking status.');
         });
