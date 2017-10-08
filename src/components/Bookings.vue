@@ -6,9 +6,9 @@
 					<div class="summary">
 						<span class="name">{{ booking.user.firstname }} {{ booking.user.surname }}</span>
 						<span class="quantity">{{ booking.quantity }}</span>
-						<button type="button" :class="{ open: booking.active }" @click="toggleActions(booking)">Open</button>
+						<button type="button" :class="{ open: activeTourBooking === booking.id }" @click="toggleActions(booking)">Open</button>
 					</div>
-					<div class="actions" v-show="booking.active">
+					<div class="actions" v-show="activeTourBooking === booking.id">
 						<button type="button" class="check-in" @click="setStatus(booking, 2)">Check In</button>
 						<button type="button" class="no-show" @click="setStatus(booking, 3)">No Show</button>
 						<button type="button" class="cancel" @click="setStatus(booking, 4)">Cancel</button>
@@ -40,33 +40,22 @@ export default {
         tourBookings() {
             return this.store.bookings.filter(booking => booking.tourId === this.tour.id);
         },
-		activeTourBooking() {
-			return this.tourBookings.find(booking => booking.active === true);
-		},
         quantitySold() {
             return this.store.bookings.filter(booking => booking.tourId === this.tour.id && booking.status !== 4).reduce((total, booking) => total + booking.quantity, 0);
         }
     },
     data() {
         return {
-            store: store.state
+            store: store.state,
+			activeTourBooking: 0
         }
     },
 	methods: {
 		toggleActions(booking) {
-			if(this.activeTourBooking) {
-				let activeId = this.activeTourBooking.id;
-
-				this.activeTourBooking.active = false;
-
-				// If we've clicked on the active booking (which we just deactivated) don't re-activate it
-				if(booking.id !== activeId) {
-					// Since 'active' isn't an existing property, we need to create it via the Vue API for it to be reactive
-					this.$set(booking, 'active', !booking.active);
-				}
+			if(this.activeTourBooking && booking.id === this.activeTourBooking) {
+				this.activeTourBooking = 0;
 			} else {
-				// Since 'active' isn't an existing property, we need to create it via the Vue API for it to be reactive
-				this.$set(booking, 'active', !booking.active);
+				this.activeTourBooking = booking.id;
 			}
 		},
 		setStatus(booking, newStatus) {
